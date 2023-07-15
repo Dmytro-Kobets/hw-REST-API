@@ -8,16 +8,18 @@ const {
   updateContact,
   isFavoriteById,
   updateFavorite,
-} = require("../../controllers/contactsControllers.js");
+} = require("../../controllers/contactsControllers/index.js");
 
 const {
   checkContactById,
   checkContactInput,
   checkFavoriteInput,
-} = require("../../middlewares/contactsMiddlewares.js");
+} = require("../../middlewares/contactsMiddlewares/index.js");
+const { protect } = require("../../middlewares/usersMiddlewares/protect.js");
 
 const router = express.Router();
 
+router.use(protect);
 router.route("/").get(getContactsList).post(checkContactInput, addContact);
 
 router.use("/:contactId", checkContactById);
