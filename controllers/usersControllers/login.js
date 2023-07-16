@@ -7,7 +7,6 @@ exports.login = catchAsync(async (req, res, next) => {
   const { email, password } = req.body;
 
   const user = await Users.findOne({ email }).select("+password");
-  console.log(user);
 
   if (!user) throw new AppError(401, "Not authorized");
 
