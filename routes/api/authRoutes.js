@@ -4,6 +4,8 @@ const {
   getCurrentUser,
   logout,
   updateAvatar,
+  verificateUser,
+  reverify,
 } = require("../../controllers/usersControllers/");
 const { login } = require("../../controllers/usersControllers/");
 const {
@@ -21,5 +23,7 @@ router.post("/login", login);
 router.get("/current", protect, getCurrentUser);
 router.post("/logout", protect, logout);
 router.patch("/avatars", uploadAvatar, protect, updateAvatar);
+router.post("/verify", reverify);
+router.get("/verify/:verificationToken", verificateUser);
 
 module.exports = router;

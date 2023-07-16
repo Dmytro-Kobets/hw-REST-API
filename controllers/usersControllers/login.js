@@ -10,6 +10,9 @@ exports.login = catchAsync(async (req, res, next) => {
 
   if (!user) throw new AppError(401, "Not authorized");
 
+  if (user.verify === false)
+    throw new AppError(401, "To login first verify your email");
+
   const passwordIsValid = await user.checkPassword(password, user.password);
 
   if (!passwordIsValid) throw new AppError(401, "Not authorized");

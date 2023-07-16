@@ -23,6 +23,14 @@ const usersSchema = Schema({
     default: null,
   },
   avatarURL: String,
+  verify: {
+    type: Boolean,
+    default: false,
+  },
+  verificationToken: {
+    type: String,
+    required: [true, "Verify token is required"],
+  },
 });
 
 usersSchema.pre("save", async function (next) {
